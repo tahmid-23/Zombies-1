@@ -1,6 +1,6 @@
 name: Zombie
 version: ${project.version}
-main: net.dip.zombie.Zombie
+main: net.zswca.zombie.Zombie
 api-version: 1.13
 authors: [Bigdip123, TachibanaYui, thamid_gamer]
 description: zombies remake attempt i guess

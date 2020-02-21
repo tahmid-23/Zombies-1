@@ -105,7 +105,7 @@ public class GunUser {
     }
 
     private Gun getGunByName(String name) throws Exception {
-        GunData data = Zombie.getGunProvider().getGun(name);
+        GunData data = Zombie.getInstance().getGunProvider().getGun(name);
         return (Gun)Class.forName(GUN_PACKAGES + data.feature)
                 .getConstructor(GunData.class, User.class).newInstance(data, this);
     }
