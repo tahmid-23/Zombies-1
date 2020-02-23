@@ -1,18 +1,16 @@
 package net.zswca.zombie.data;
 
+import net.zswca.zombie.data.gunfeatures.BaseFeature;
 import net.zswca.zombie.utils.RomanNumber;
 import net.zswca.zombie.utils.WeaponStatsLoreBuilder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 
-
-import javax.accessibility.AccessibleAction;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Vector;
 
 public class GunData {
     public String name = "Default gun";
@@ -23,21 +21,14 @@ public class GunData {
             "This is a default gun description",
             "This will be parsed from a config file" };
 
-    // corespone the type of gun this gun have, for example LinearGun
-    public String feature;
-
-    // data for custom gun feature
-    public Hashtable<String, String> gunFeature;
+    private Hashtable<String, String> gunFeature;
+    public BaseFeature feature;
 
     // represent gun leveling
     // index:
     //  0 : base stats
     //  1+ : ultimate levels
     public List<BulletStats> stats;
-
-    public String getFeatureInfo(String field) {
-        return gunFeature.get(field);
-    }
 
     public void updateFeatureInfo(String field, String value) {
         gunFeature.replace(field, value);

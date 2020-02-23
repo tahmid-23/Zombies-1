@@ -1,9 +1,8 @@
-package net.zswca.zombie.objects.guns.logics;
+package net.zswca.zombie.objects.guns;
 
-import net.zswca.zombie.data.BulletStats;
 import net.zswca.zombie.data.GunData;
+import net.zswca.zombie.data.gunfeatures.LinearGunFeature;
 import net.zswca.zombie.objects.User;
-import net.zswca.zombie.objects.guns.Gun;
 import net.zswca.zombie.objects.guns.logics.LinearBeam;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -20,13 +19,12 @@ public class LinearGun extends Gun {
     protected final int maxHitEntities;
     protected final Particle particle;
 
-    /**
-     * Creates a gun like the Gun superclass
-     */
     LinearGun(GunData data, User user) {
         super(data, user);
-        this.maxHitEntities = Integer.parseInt(this.gunStats.getFeatureInfo("maxHitEntities"));
-        this.particle = Particle.valueOf(this.gunStats.getFeatureInfo("particle"));
+
+        LinearGunFeature feature = (LinearGunFeature) gunStats.feature;
+        this.maxHitEntities = feature.getMaxHitEntities();
+        this.particle = feature.getParticle();
     }
 
     public void shoot(){
@@ -39,10 +37,6 @@ public class LinearGun extends Gun {
         sendShot(world, eyeLocation, eyeDirection, targetBlockVector);
     }
 
-    public void reload() {
-        // TODO: Reload
-
-    }
 
     private void sendShot(World world, Vector particleLocation, Vector particleDirection, Vector targetBlockVector) {
         LinearBeam beam = new LinearBeam(world, particle, particleLocation, particleDirection, targetBlockVector, maxHitEntities);
