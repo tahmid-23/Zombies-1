@@ -34,7 +34,7 @@ public class YmlConfigGunProvider implements ISavableGunProvider, IReloadAbleGun
 
     @Override
     public void reloadAllGuns() throws IOException {
-        List<File> gunFiles =  Files.walk(Paths.get(gunConfigFolder.getAbsolutePath()))
+        List<File> gunFiles = Files.walk(Paths.get(gunConfigFolder.getAbsolutePath()))
                 .filter(path -> path.endsWith(".gundata"))
                 .map(Path::toFile)
                 .collect(Collectors.toList());
